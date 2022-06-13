@@ -16,7 +16,7 @@ class SourceStage(Construct):
 
     def github_source_action(self):
         owner = 'rafty'
-        repo = 'sample_flask_frontend_app'
+        repo = 'handson-eks_front_app'
         # todo: cdk.jsonから取得する
         # branch = 'master'
         asm_secret_name = self.node.try_get_context('github_token_name')
