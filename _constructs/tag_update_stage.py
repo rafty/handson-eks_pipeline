@@ -25,6 +25,7 @@ class TagUpdateStage(Construct):
         # Stage - Manifest Tag Update (GitHub)
         # ----------------------------------------------------------
         github_target_repository = self.node.try_get_context('github_target_repository')
+        github_target_manifest = self.node.try_get_context('github_target_manifest')
         github_token_name = self.node.try_get_context('github_token_name')
 
         fn = self.create_lambda_function()
@@ -32,6 +33,7 @@ class TagUpdateStage(Construct):
             action_name='github-manifest-tag-update',
             user_parameters={
                 'github_target_repository': github_target_repository,
+                'github_target_manifest': github_target_manifest,
                 'github_branch': 'master',
                 'github_token_name': github_token_name,
                 # 'container_image_name': self._container_image_name,  # from Build Stage

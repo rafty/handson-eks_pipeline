@@ -41,11 +41,9 @@ def get_secret(conf: dict) -> str:
 
 def github_manifest_update(conf: dict):
     loca_repo_path = '/tmp/repo'  # lambda local path
-    target_manifest = loca_repo_path + '/flask_workshop/frontend/dev/flask-frontend-dep.yaml'
-    # Todo: move to CDK.json
+    target_manifest = loca_repo_path + conf['github_target_manifest']
     github_personal_access_token = get_secret(conf=conf)  # From Amazon Secrets Manager
 
-    # git clone
     local_repo = porcelain.clone(
         source=conf['github_target_repository'],
         branch=conf['github_branch'].encode('utf-8'),
@@ -60,10 +58,8 @@ def github_manifest_update(conf: dict):
         target_manifest=target_manifest,
         container_image_tag=conf['container_image_tag'])
 
-    # git add
     porcelain.add(repo=local_repo, paths=target_manifest)
 
-    # git commit
     author = 'aws-codepipeline-lambda <lambda@example.com>'
     porcelain.commit(
         repo=local_repo,
@@ -89,6 +85,7 @@ def extruct_user_parameters(event: dict) -> dict:
     user_parameters = json.loads(job_data['actionConfiguration']['configuration']['UserParameters'])
     conf = {
         'github_target_repository': user_parameters['github_target_repository'],
+        'github_target_manifest': user_parameters['github_target_manifest'],
         'github_token_name': user_parameters['github_token_name'],
         'github_branch': user_parameters['github_branch'],  # master
         'container_image_tag': user_parameters['container_image_tag']['value']  # from Build Stage

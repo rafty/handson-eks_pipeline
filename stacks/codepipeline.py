@@ -1,3 +1,4 @@
+import aws_cdk
 from aws_cdk import Stack
 from constructs import Construct
 from aws_cdk import aws_ecr
@@ -26,7 +27,7 @@ class CodepipelineStack(Stack):
             id=f'{ecr_repository_name}-Stack',
             repository_name=ecr_repository_name,
             # image_scan_on_push=True,  # Image Scan
-            # removal_policy=aws_cdk.RemovalPolicy.DESTROY, # stack削除時の動作
+            removal_policy=aws_cdk.RemovalPolicy.DESTROY,  # stack削除時の動作
             # lifecycle_rules=[removal_old_image]  # imageの世代管理
         )
 

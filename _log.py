@@ -6,7 +6,7 @@ _dict = {
             'actionConfiguration': {
                 'configuration': {
                     'FunctionName': 'GithubManifestTagUpdate',
-                    'UserParameters': '{"Repo":"hoge_app","owner":"rafty","branch":"master","oauth_token_name":"GithubPersonalAccessToken"}'
+                    'UserParameters': '{"Repo":"foo_hoge_app","owner":"rafty","branch":"master","oauth_token_name":"GithubPersonalAccessToken"}'
                 }
             },
             'inputArtifacts': [],

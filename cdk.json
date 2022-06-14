@@ -30,8 +30,9 @@
     ],
     "pipeline_name": "sample_codepipeline",
     "github_token_name": "GithubPersonalAccessToken",
-    "github_source_repository": "https://github.com/rafty/sample_flask_frontend_app",
-    "github_target_repository": "https://github.com/rafty/eks-gitops-app-manifest",
-    "ecr_repository_name": "sample_flask_frontend_app"
+    "github_source_repository": "https://github.com/rafty/handson-eks_front_app",
+    "github_target_repository": "https://github.com/rafty/handson-eks_app_manifest",
+    "github_target_manifest": "/flask/dev/flask-dep.yaml",
+    "ecr_repository_name": "flask"
   }
 }
