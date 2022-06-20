@@ -11,6 +11,6 @@ env = cdk.Environment(
     region=os.environ.get("CDK_DEPLOY_REGION", os.environ["CDK_DEFAULT_REGION"]),
 )
 
-CodepipelineStack(app, "AwscdkCodepipelineStack", env=env)
+CodepipelineStack(app, "CodepipelineStack", env=env)
 
 app.synth()
