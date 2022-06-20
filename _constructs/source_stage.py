@@ -15,10 +15,8 @@ class SourceStage(Construct):
         self.source_output = aws_codepipeline.Artifact('source_stage_output')
 
     def github_source_action(self):
-        owner = 'rafty'
-        repo = 'handson-eks_front_app'
-        # todo: cdk.jsonから取得する
-        # branch = 'master'
+        owner = self.node.try_get_context('github_owner')
+        repo = self.node.try_get_context('github_source_repository_name')
         asm_secret_name = self.node.try_get_context('github_token_name')
         oauth_token = aws_cdk.SecretValue.secrets_manager(asm_secret_name)
 
